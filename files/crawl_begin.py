@@ -2,7 +2,7 @@
 from bs4 import BeautifulSoup
 import requests,time
 from PIL import Image
-import pytesseract
+import pytesseract,os
 
 session = requests.Session()    #记录登录信息，session对象
 logined_flag=0  #记录是否登录成功的标志
@@ -66,11 +66,11 @@ def get_login_data():
 def get_authcode(image_url): #自动获取验证码,返回验证码的字符串
     response = session.get(image_url, headers=authcode_header)  # 访问验证码地址
     # with open(r'/tmp/pycharm_project_101/authcode.jpg', 'wb') as f:  # 打开文件地址，将图片进行保存
-    with open(r'F:\PYTHON\projects\crawls\files\authcode.jpg', 'wb') as f:
+    with open(os.path.join(os.getcwd(),'authcode.jpg'), 'wb') as f:
         f.write(response.content)  # 以二进制的方式保存图片
         f.flush()
         f.close()
-    img = Image.open(r'F:\PYTHON\projects\crawls\files\authcode.jpg')  #读取图片
+    img = Image.open(os.path.join(os.getcwd(),'authcode.jpg'))  #读取图片
     gray = img.convert('L') #转换成灰度图
     # gray.show()
     #  setup a converting table with constant threshold
