@@ -1,6 +1,6 @@
 #!进入到登录界面，以获取登录需要的data----此次获取登录信息后，采用带着登录信息访问数据指定网页进行爬取
 from bs4 import BeautifulSoup
-import requests,time
+import requests
 from PIL import Image
 import pytesseract,os
 
